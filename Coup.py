@@ -15,7 +15,7 @@
 # 7. Define a lying game
 # 
 
-# In[1]:
+# In[ ]:
 
 
 # Import packages
@@ -27,7 +27,7 @@ from random import shuffle        # for deck shuffling
 # 
 # I first create a game with only three players. Player will be a class distinguished by their names which has instance coin (initially 2) and hands. Hands should be a dictionary with a maximum length two. If the player has no cards he will die.
 
-# In[2]:
+# In[ ]:
 
 
 class Player:
@@ -55,7 +55,7 @@ class Player:
 
 # We first define a function to check whether the game stops, this function will be triggered everytime player show down their card.
 
-# In[3]:
+# In[ ]:
 
 
 def endgame_check():
@@ -69,7 +69,7 @@ def endgame_check():
 
 # There should also be a function for a player choosing one card to loose(which also means you lose one life), after this action, we always check if the player is still alive and if the game ends.
 
-# In[12]:
+# In[ ]:
 
 
 def discard(victim):
@@ -100,7 +100,7 @@ def discard(victim):
 
 # Define a function to exchange hand with pool, note that you might get back the same card. After this the player will check his hands.
 
-# In[5]:
+# In[ ]:
 
 
 def exchange(player,card):
@@ -119,7 +119,7 @@ def exchange(player,card):
 
 # When questioning or blocking, we need an iterator which takes the seccond next player and loop till the player before him. So we create a function to generate the iterator.
 
-# In[6]:
+# In[ ]:
 
 
 def calling(actioner):
@@ -132,7 +132,7 @@ def calling(actioner):
     return iterator
 
 
-# In[7]:
+# In[ ]:
 
 
 def question(actioner,card):
@@ -158,13 +158,13 @@ def question(actioner,card):
 
 # We put all possible actions inside a function called action, the input will be the player and name of the action, then different effects will happen according to what the player inputs. To make things simple, we first create an action list for the future check.
 
-# In[8]:
+# In[ ]:
 
 
 action_list = ['income','foreign aid','coup','duke','assassin','duke','ambassador','captain']
 
 
-# In[9]:
+# In[ ]:
 
 
 def take_action(player,action):
@@ -334,7 +334,7 @@ def take_action(player,action):
 
 # # Configuration
 
-# In[14]:
+# In[ ]:
 
 
 # Players login
@@ -387,7 +387,7 @@ discarded_pool = []
 # 2. select an action
 # 3. check whether game stops (len(players) == 1)
 
-# In[15]:
+# In[ ]:
 
 
 # Although the game will terminate itself, we need to add a loop to keep it working. For safety consideration we use the termination check.
@@ -416,10 +416,6 @@ while not len(existing_players) == 1:
                 action = input('Please select an action: ')
                 print('\n')
 
-                # for testing
-                if action == 'exit':
-                    sys.exit()
-
                 while not action in action_list:
                     action = input('Please re-enter a valid action: ')          
                 # A player can only chooese assassin if he or she has 3+ coins
@@ -436,13 +432,6 @@ while not len(existing_players) == 1:
         print('-'*100)
 
 
-# In[28]:
-
-
-a = players.copy()
-id(a) == id(players)
-
-
 # # Future improvements
 # 
 # 1. The iterator definitely needs a big fix, first it needs to be more consise. Also the iterator should start at the correct position for blocker and contessa 
@@ -451,3 +440,4 @@ id(a) == id(players)
 # 4. Break down the code to different files that only the main file will be executed
 # 5. Change to a design which allows new action/card to be added in easily
 # 6. I forgot dictionaries can't change size as a iterator, need another way to intepret the loop
+# 7. Hide hands information after a player checks it.
